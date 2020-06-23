@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Doge_example
 {
-    public partial class Form1 : Form
+    public partial class FrmDoge : Form
     {
-        public Form1()
+        public FrmDoge()
         {
             InitializeComponent();
+        }
+
+        private void FrmDoge_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
