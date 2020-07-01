@@ -39,6 +39,10 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.lblLives = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlGame
@@ -52,12 +56,10 @@
             // 
             // TmrPlanet
             // 
-            this.TmrPlanet.Enabled = true;
             this.TmrPlanet.Tick += new System.EventHandler(this.TmrPlanet_Tick);
             // 
             // TmrShip
             // 
-            this.TmrShip.Enabled = true;
             this.TmrShip.Interval = 50;
             this.TmrShip.Tick += new System.EventHandler(this.TmrShip_Tick);
             // 
@@ -119,11 +121,35 @@
             // 
             // txtName
             // 
-            this.txtName.Enabled = false;
             this.txtName.Location = new System.Drawing.Point(522, 104);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 7;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem,
+            this.stopToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(634, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.stopToolStripMenuItem.Text = "Stop";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // FrmDoge
             // 
@@ -138,11 +164,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PnlGame);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmDoge";
             this.Text = "Doge";
             this.Load += new System.EventHandler(this.FrmDoge_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDoge_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmDoge_KeyUp);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +190,9 @@
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
     }
 }
 

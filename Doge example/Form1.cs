@@ -87,6 +87,23 @@ namespace Doge_example
 
         }
 
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            score = 0;
+            lblScore.Text = score.ToString();
+            lives = int.Parse(lblLives.Text);// pass lives entered from textbox to lives variable
+            TmrPlanet.Enabled = true;
+            TmrShip.Enabled = true;
+            txtName.Enabled = false;
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TmrShip.Enabled = false;
+            TmrPlanet.Enabled = false;
+
+        }
+
         private void TmrPlanet_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < 7; i++)
