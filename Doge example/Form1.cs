@@ -16,6 +16,9 @@ namespace Doge_example
         Planet[] planet = new Planet[7]; //create the object, planet1
         Random yspeed = new Random();
         Spaceship spaceship = new Spaceship();
+        bool left, right;
+        int score, lives;
+        string move;
         public FrmDoge()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace Doge_example
 
             private void FrmDoge_Load(object sender, EventArgs e)
         {
-
+            lives = int.Parse(lblLives.Text);// pass lives entered from textbox to lives variable
         }
 
         private void PnlGame_Paint(object sender, PaintEventArgs e)
@@ -50,19 +53,77 @@ namespace Doge_example
 
         }
 
+        private void FrmDoge_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left) { left = true; }
+            if (e.KeyData == Keys.Right) { right = true; }
+
+        }
+
+        private void FrmDoge_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left) { left = false; }
+            if (e.KeyData == Keys.Right) { right = false; }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TmrShip_Tick(object sender, EventArgs e)
+        {
+            if (right) // if right arrow key pressed
+            {
+                move = "right";
+                spaceship.MoveSpaceship(move);
+            }
+            if (left) // if left arrow key pressed
+            {
+                move = "left";
+                spaceship.MoveSpaceship(move);
+            }
+
+        }
+
         private void TmrPlanet_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < 7; i++)
             {
                 planet[i].MovePlanet();
+                lblLives.Text = lives.ToString();// display number of lives
+                if (spaceship.spaceRec.IntersectsWith(planet[i].planetRec))
+                {
+                    //reset planet[i] back to top of panel
+                    planet[i].y = 30; // set  y value of planetRec
+                    lives -= 1;// lose a life
+                    lblLives.Text = lives.ToString();// display number of lives
+                    CheckLives();
+                }
+
+
                 //if a planet reaches the bottom of the Game Area reposition it at the top
                 if (planet[i].y >= PnlGame.Height)
                 {
                     planet[i].y = 30;
+                    score += 1;//update the score
+                    lblScore.Text = score.ToString();// display score
+
                 }
 
             }
             PnlGame.Invalidate();//makes the paint event fire to redraw the panel
         }
+        private void CheckLives()
+        {
+            if (lives == 0)
+            {
+                TmrPlanet.Enabled = false;
+                TmrShip.Enabled = false;
+                MessageBox.Show("Game Over");
+            }
+        }
+
     }
 }
